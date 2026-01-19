@@ -41,18 +41,18 @@ export const Gallery = () => {
             </div>
 
             {/* Infinite Scrolling Marquee */}
-            <div className="relative w-full overflow-hidden py-10 min-h-[350px] md:min-h-[400px]">
+            <div className="relative w-full overflow-hidden py-10">
                 <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
                 <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
                 <motion.div
-                    className="flex gap-4 md:gap-6"
+                    className="flex gap-6"
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 40,
+                            duration: 30,
                             ease: "linear"
                         }
                     }}
@@ -61,21 +61,18 @@ export const Gallery = () => {
                     {[...images, ...images].map((img, index) => (
                         <motion.div
                             key={index}
-                            className="relative w-[280px] md:w-[350px] h-[200px] md:h-[280px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group shadow-lg"
+                            className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
                             onClick={() => setSelectedImage(img.src)}
-                            whileHover={{ scale: 1.02 }}
+                            whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
                         >
                             <img
                                 src={img.src}
                                 alt={img.alt}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                loading="lazy"
+                                className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-black/30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span className="text-white text-sm font-bold border border-white/50 px-4 py-1 rounded-full backdrop-blur-md bg-white/10">
-                                    詳細を見る
-                                </span>
+                            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span className="text-white font-bold border border-white px-4 py-1 rounded-full backdrop-blur-sm">VIEW</span>
                             </div>
                         </motion.div>
                     ))}

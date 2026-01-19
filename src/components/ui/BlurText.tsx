@@ -26,8 +26,7 @@ export const BlurText: React.FC<BlurTextProps> = ({
         }
     }, [isInView, controls]);
 
-    // For Japanese and other languages without spaces, we split by character if no spaces are found
-    const words = text.includes(' ') ? text.split(' ') : text.split('');
+    const words = text.split(' ');
 
     const containerVariants: Variants = {
         hidden: {},

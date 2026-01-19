@@ -78,20 +78,18 @@ export const About = () => {
 
           <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">
             <h4 className="font-bold text-corporate-black mb-4 border-b border-gray-200 pb-2">会社概要</h4>
-            <dl className="grid grid-cols-1 gap-y-4 text-sm">
-              <div className="flex flex-col sm:grid sm:grid-cols-3 gap-1 sm:gap-4">
-                <dt className="text-gray-500 font-medium">社名</dt>
-                <dd className="sm:col-span-2 font-bold text-gray-900 text-base sm:text-sm">合同会社健組（けんぐみ）</dd>
+            <dl className="grid grid-cols-1 gap-y-3 text-sm">
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">社名</dt>
+                <dd className="col-span-2 font-medium text-gray-900">合同会社健組（けんぐみ）</dd>
               </div>
-              <div className="flex flex-col sm:grid sm:grid-cols-3 gap-1 sm:gap-4">
-                <dt className="text-gray-500 font-medium">代表者</dt>
-                <dd className="sm:col-span-2 font-bold text-gray-900 text-base sm:text-sm">野崎 健治</dd>
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">代表者</dt>
+                <dd className="col-span-2 font-medium text-gray-900">野崎 健治</dd>
               </div>
-              <div className="flex flex-col sm:grid sm:grid-cols-3 gap-1 sm:gap-4">
-                <dt className="text-gray-500 font-medium">所在地</dt>
-                <dd className="sm:col-span-2 font-bold text-gray-900 text-base sm:text-sm leading-relaxed">
-                  〒274-0063<br />千葉県船橋市習志野台4-29-26
-                </dd>
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">所在地</dt>
+                <dd className="col-span-2 font-medium text-gray-900">〒274-0063<br />千葉県船橋市習志野台4-29-26</dd>
               </div>
             </dl>
           </div>
