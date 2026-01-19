@@ -55,7 +55,8 @@ export const Hero = () => {
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
             <SplitText
-              text="未来のインフラを創造する"
+              text={`未来のインフラを\n創造する`}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight whitespace-pre-wrap"
               delay={0.3}
               duration={0.6}
               stagger={0.04}

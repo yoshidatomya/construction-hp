@@ -71,8 +71,10 @@ export const About = () => {
             <BlurText text="確かな技術で、安心の未来を。" delay={0.2} />
           </h2>
           <p className="text-gray-600 mb-8 leading-relaxed">
-            合同会社健組（けんぐみ）は、鉄骨工事、鍛冶工事、重量鳶工事、足場工事など、
-            建設現場における重要な専門工事を一式で請け負います。
+            合同会社健組（けんぐみ）は、
+            <span className="inline-block">鉄骨工事、鍛冶工事、</span>
+            <span className="inline-block">重量鳶工事、足場工事など、</span><br className="hidden md:block" />
+            建設現場における重要な専門工事を一式で請け負います。<br className="block my-2" />
             現場管理も含め、安全かつ高品質な施工をお約束いたします。
           </p>
 
