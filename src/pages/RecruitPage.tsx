@@ -70,7 +70,7 @@ export const RecruitPage = () => {
                                 </ul>
                                 <div className="flex items-center gap-2 text-corporate-black font-bold text-lg">
                                     <DollarSign className="w-5 h-5 text-gray-400" />
-                                    月給 25万円〜45万円
+                                    月給 25万円〜90万円
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@ export const RecruitPage = () => {
                                 </ul>
                                 <div className="flex items-center gap-2 text-corporate-black font-bold text-lg">
                                     <DollarSign className="w-5 h-5 text-gray-400" />
-                                    月給 30万円〜60万円
+                                    月給 30万円〜120万円
                                 </div>
                             </div>
 

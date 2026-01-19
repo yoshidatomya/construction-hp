@@ -82,9 +82,11 @@ export const Hero = () => {
               </Button>
             </ClickSpark>
             <ClickSpark sparkColor="#ffffff" sparkCount={12}>
-              <Button variant="outline" size="lg" className="min-w-[200px] border-white text-white hover:bg-white hover:text-corporate-black">
-                お問い合わせ
-              </Button>
+              <a href="#contact">
+                <Button variant="outline" size="lg" className="min-w-[200px] border-white text-white hover:bg-white hover:text-corporate-black">
+                  お問い合わせ
+                </Button>
+              </a>
             </ClickSpark>
           </motion.div>
         </motion.div>

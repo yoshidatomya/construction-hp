@@ -22,7 +22,7 @@ export const Contact = () => {
             <BlurText text="お問い合わせ" delay={0.1} />
           </h2>
           <p className="text-gray-600 mb-10 leading-relaxed">
-            建設・土木工事に関するご相談、お見積りなど、お気軽にお問い合わせください。
+            建設・プラント工事に関するご相談、お見積りなど、お気軽にお問い合わせください。
             お急ぎの方はお電話にてご連絡ください。
           </p>
 

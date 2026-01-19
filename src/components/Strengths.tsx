@@ -25,7 +25,7 @@ export const Strengths = () => {
     {
       icon: Award,
       title: "品質保証",
-      description: "ISO認証取得の品質管理システムで、最高水準の品質を提供します。"
+      description: "熟練した作業員・管理者の元 最高水準の品質を保証します。"
     }
   ];
 

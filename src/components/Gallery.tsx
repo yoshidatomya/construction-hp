@@ -36,38 +36,43 @@ export const Gallery = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px]">
-        {images.map((img, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            className={img.span}
-          >
-            <SpotlightCard
-              className="h-full w-full rounded-xl overflow-hidden cursor-pointer"
-              spotlightColor="rgba(249, 115, 22, 0.2)"
-              spotlightSize={400}
+      {/* Infinite Scrolling Marquee */}
+      <div className="relative w-full overflow-hidden py-10">
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+        <motion.div
+          className="flex gap-6"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear"
+            }
+          }}
+        >
+          {/* Duplicate images array to create seamless loop */}
+          {[...images, ...images].map((img, index) => (
+            <motion.div
+              key={index}
+              className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
+              onClick={() => setSelectedImage(img.src)}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              <div
-                className="relative h-full w-full group"
-                onClick={() => setSelectedImage(img.src)}
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white font-medium tracking-wider border border-white/80 px-6 py-2 rounded-full backdrop-blur-sm bg-white/10">VIEW</span>
-                </div>
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-bold border border-white px-4 py-1 rounded-full backdrop-blur-sm">VIEW</span>
               </div>
-            </SpotlightCard>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       {/* Lightbox */}
