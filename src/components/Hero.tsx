@@ -53,19 +53,19 @@ export const Hero = () => {
             </GradientText>
           </h2>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
+          {/* Desktop Title */}
+          <h1 className="hidden md:block text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
             <SplitText
-              text="未来のインフラを"
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-2 block"
+              text="未来のインフラを創造する"
               delay={0.3}
               duration={0.6}
             />
-            <SplitText
-              text="創造する"
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight block"
-              delay={0.5}
-              duration={0.6}
-            />
+          </h1>
+
+          {/* Mobile Title - with forced line break */}
+          <h1 className="block md:hidden text-3xl font-bold tracking-tight mb-6 leading-snug">
+            <span className="block">未来のインフラを</span>
+            <span className="block">創造する</span>
           </h1>
 
           <div className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed">
