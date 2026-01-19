@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from './ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -20,6 +20,15 @@ export const Gallery = () => {
     ];
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const selectedImage = selectedIndex !== null ? images[selectedIndex].src : null;
 
     const handleNext = (e?: React.MouseEvent) => {
@@ -78,7 +87,7 @@ export const Gallery = () => {
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 30,
+                            duration: isMobile ? 24 : 30,
                             ease: "linear"
                         }
                     }}
