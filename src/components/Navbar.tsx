@@ -55,10 +55,12 @@ export const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant={isScrolled ? "primary" : "primary"} size="sm" className="ml-4">
-              <Phone className="w-4 h-4 mr-2" />
-              お問い合わせ
-            </Button>
+            <a href="/#contact">
+              <Button variant={isScrolled ? "primary" : "primary"} size="sm" className="ml-4">
+                <Phone className="w-4 h-4 mr-2" />
+                お問い合わせ
+              </Button>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -94,7 +96,9 @@ export const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4">
-                <Button fullWidth>お問い合わせ</Button>
+                <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button fullWidth>お問い合わせ</Button>
+                </a>
               </div>
             </div>
           </motion.div>

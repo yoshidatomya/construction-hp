@@ -77,9 +77,11 @@ export const Hero = () => {
             transition={{ delay: 1.2, duration: 0.6 }}
           >
             <ClickSpark sparkColor="#f97316" sparkCount={12}>
-              <Button size="lg" className="min-w-[200px]">
-                事業案内を見る
-              </Button>
+              <a href="#about">
+                <Button size="lg" className="min-w-[200px]">
+                  事業案内を見る
+                </Button>
+              </a>
             </ClickSpark>
             <ClickSpark sparkColor="#ffffff" sparkCount={12}>
               <a href="#contact">
