@@ -61,7 +61,7 @@ export const Gallery = () => {
           {[...images, ...images].map((img, index) => (
             <motion.div
               key={index}
-              className="relative min-w-[250px] md:min-w-[300px] h-[200px] md:h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
+              className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
               onClick={() => setSelectedImage(img.src)}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}

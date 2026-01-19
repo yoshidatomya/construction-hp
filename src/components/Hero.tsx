@@ -53,33 +53,21 @@ export const Hero = () => {
             </GradientText>
           </h2>
 
-          {/* Desktop Title */}
-          <h1 className="hidden md:block text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
             <SplitText
               text="未来のインフラを創造する"
               delay={0.3}
               duration={0.6}
+              stagger={0.04}
             />
           </h1>
 
-          {/* Mobile Title - with forced line break */}
-          <h1 className="block md:hidden text-3xl font-bold tracking-tight mb-6 leading-snug">
-            <span className="block">未来のインフラを</span>
-            <span className="block">創造する</span>
-          </h1>
-
           <div className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed">
-            <p className="hidden md:block">
-              <BlurText
-                text="確かな技術と信頼で、社会の基盤を支えます。私たちは、次世代へ繋ぐ価値ある建設を提供します。"
-                delay={0.8}
-                duration={0.6}
-              />
-            </p>
-            <p className="block md:hidden text-base leading-relaxed px-4">
-              確かな技術と信頼で、<br />社会の基盤を支えます。<br /><br />
-              私たちは、次世代へ繋ぐ<br />価値ある建設を提供します。
-            </p>
+            <BlurText
+              text="確かな技術と信頼で、社会の基盤を支えます。私たちは、次世代へ繋ぐ価値ある建設を提供します。"
+              delay={0.8}
+              duration={0.6}
+            />
           </div>
 
           <motion.div
