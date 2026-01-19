@@ -31,20 +31,20 @@ export const Contact = () => {
               {
                 icon: MapPin,
                 title: "所在地",
-                content: "〒100-0001",
-                subcontent: "東京都千代田区千代田1-1"
+                content: "〒274-0063",
+                subcontent: "千葉県船橋市習志野台4-29-26"
               },
               {
                 icon: Phone,
                 title: "お電話",
-                content: "03-1234-5678",
-                subcontent: "平日 9:00 - 18:00"
+                content: "047-468-1463",
+                subcontent: "お気軽にお問い合わせください"
               },
               {
                 icon: Mail,
                 title: "メール",
-                content: "info@yamadabuild.co.jp",
-                subcontent: null
+                content: "ken.yo2678@gmail.com",
+                subcontent: "24時間受付"
               }
             ].map((item, index) => (
               <motion.div
@@ -76,7 +76,17 @@ export const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <form className="space-y-6">
+          <form
+            action="https://formsubmit.co/ken.yo2678@gmail.com"
+            method="POST"
+            className="space-y-6"
+          >
+            {/* FormSubmit Configuration */}
+            <input type="hidden" name="_subject" value="新しいお問い合わせ - 合同会社健組HP" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={window.location.href} />
+
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                 お名前 <span className="text-corporate-accent">*</span>
@@ -84,6 +94,8 @@ export const Contact = () => {
               <input
                 type="text"
                 id="name"
+                name="name"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-corporate-accent focus:border-transparent outline-none transition-all bg-white"
                 placeholder="山田 太郎"
               />
@@ -95,6 +107,8 @@ export const Contact = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-corporate-accent focus:border-transparent outline-none transition-all bg-white"
                 placeholder="example@email.com"
               />
@@ -105,13 +119,15 @@ export const Contact = () => {
               </label>
               <textarea
                 id="message"
+                name="message"
+                required
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-corporate-accent focus:border-transparent outline-none transition-all bg-white resize-none"
                 placeholder="ご相談内容をご記入ください"
               ></textarea>
             </div>
             <ClickSpark sparkColor="#f97316" sparkCount={12}>
-              <Button fullWidth size="lg">送信する</Button>
+              <Button fullWidth size="lg" type="submit">送信する</Button>
             </ClickSpark>
           </form>
         </motion.div>

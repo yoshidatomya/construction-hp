@@ -17,12 +17,12 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'ホーム', href: '#hero' },
-    { name: '会社概要', href: '#about' },
-    { name: '事業内容', href: '#services' },
-    { name: '強み', href: '#strengths' },
-    { name: '実績', href: '#gallery' },
-    { name: '採用情報', href: '#recruit' }, // Added Recruit as it's common
+    { name: 'ホーム', href: '/#hero' },
+    { name: '会社概要', href: '/#about' },
+    { name: '事業内容', href: '/#services' },
+    { name: '強み', href: '/#strengths' },
+    { name: '実績', href: '/#gallery' },
+    { name: '採用情報', href: '/recruit' }, // Added Recruit as it's common
   ];
 
   return (
@@ -36,9 +36,8 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className={cn("text-2xl font-bold tracking-tighter", isScrolled ? "text-corporate-black" : "text-white")}>
-              YAMADA<span className="text-corporate-accent">BUILD</span>
-              {/* Placeholder Name */}
+            <a href="#" className="block">
+              <img src="/assets/logo.png" alt="Kengumi LLC" className="h-20 w-auto object-contain" />
             </a>
           </div>
 

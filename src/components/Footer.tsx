@@ -17,12 +17,12 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <a href="#" className="text-3xl font-bold tracking-tighter text-white mb-6 block">
-              YAMADA<GradientText colors={['#f97316', '#fbbf24', '#f97316']}>BUILD</GradientText>
+            <a href="#" className="mb-6 block">
+              <img src="/assets/logo.png" alt="Kengumi LLC" className="h-16 w-auto object-contain bg-white rounded-lg p-1" />
             </a>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-              確かな技術と信頼で、社会の基盤を支えます。<br />
-              建設・土木・インフラ整備のプロフェッショナル。
+              鉄骨・鍛冶・鳶・足場工事のプロフェッショナル集団。<br />
+              合同会社健組（けんぐみ）
             </p>
           </motion.div>
 
@@ -86,7 +86,7 @@ export const Footer = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          &copy; {new Date().getFullYear()} YAMADA BUILD Co., Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} Kengumi LLC. All rights reserved.
         </motion.div>
       </div>
     </footer>

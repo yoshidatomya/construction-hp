@@ -10,10 +10,10 @@ import { motion } from 'framer-motion';
 
 export const About = () => {
   const features = [
-    "創業50年以上の実績と信頼",
-    "最新技術を駆使した施工管理",
-    "徹底した安全管理体制",
-    "環境に配慮した持続可能な建設"
+    "鉄骨工事・鍛冶工事一式",
+    "重量鳶・足場工事のプロフェッショナル",
+    "徹底した安全管理と現場管理",
+    "スピーディーで高品質な施工"
   ];
 
   return (
@@ -54,6 +54,7 @@ export const About = () => {
           </motion.div>
         </motion.div>
 
+
         {/* Text Side */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -67,13 +68,31 @@ export const About = () => {
             </GradientText>
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold text-corporate-black mb-6 leading-tight">
-            <BlurText text="技術と信頼で、安心できる社会基盤を築く" delay={0.2} />
+            <BlurText text="確かな技術で、安心の未来を。" delay={0.2} />
           </h2>
           <p className="text-gray-600 mb-8 leading-relaxed">
-            私たちは、建設・土木・インフラ整備を通じて、地域社会の発展に貢献してきました。
-            長年の経験で培った技術力と、最新のテクノロジーを融合させ、
-            お客様のニーズに応える高品質な施工を提供します。
+            合同会社健組（けんぐみ）は、鉄骨工事、鍛冶工事、重量鳶工事、足場工事など、
+            建設現場における重要な専門工事を一式で請け負います。
+            現場管理も含め、安全かつ高品質な施工をお約束いたします。
           </p>
+
+          <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">
+            <h4 className="font-bold text-corporate-black mb-4 border-b border-gray-200 pb-2">会社概要</h4>
+            <dl className="grid grid-cols-1 gap-y-3 text-sm">
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">社名</dt>
+                <dd className="col-span-2 font-medium text-gray-900">合同会社健組（けんぐみ）</dd>
+              </div>
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">代表者</dt>
+                <dd className="col-span-2 font-medium text-gray-900">野崎 健治</dd>
+              </div>
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">所在地</dt>
+                <dd className="col-span-2 font-medium text-gray-900">〒274-0063<br />千葉県船橋市習志野台4-29-26</dd>
+              </div>
+            </dl>
+          </div>
 
           <div className="space-y-4 mb-10">
             {features.map((feature, index) => (
@@ -92,10 +111,13 @@ export const About = () => {
           </div>
 
           <ClickSpark sparkColor="#f97316" sparkCount={10}>
-            <Button>会社概要を見る</Button>
+            <a href="#contact">
+              <Button>お問い合わせ</Button>
+            </a>
           </ClickSpark>
         </motion.div>
       </div>
     </Section>
   );
 };
+

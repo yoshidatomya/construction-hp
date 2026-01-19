@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './ui/Section';
-import { Building2, HardHat, Truck, Ruler } from 'lucide-react';
+import { Hammer, Flame, Anchor, Grid, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SpotlightCard } from './ui/SpotlightCard';
 import { BlurText } from './ui/BlurText';
@@ -36,24 +36,29 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon: Icon, title, descriptio
 export const Services = () => {
   const services = [
     {
-      icon: Building2,
-      title: "建築工事",
-      description: "オフィスビル、商業施設、マンションなど、多岐にわたる建築物の施工を行います。機能性とデザイン性を両立させた空間を創造します。"
+      icon: Grid,
+      title: "鉄骨工事一式",
+      description: "建物の骨格となる鉄骨の組立・設置を行います。高層ビルから工場まで、あらゆる形状・規模の鉄骨工事に精通しています。"
     },
     {
-      icon: Truck,
-      title: "土木工事",
-      description: "道路、橋梁、トンネルなどの社会インフラ整備。確かな技術で、地域の安全と利便性を支える基盤を作ります。"
+      icon: Flame,
+      title: "鍛冶工事一式",
+      description: "鉄骨の溶接・加工から現場での微調整まで。熟練の技術で、設計図通りの強固な接合を実現します。"
     },
     {
-      icon: HardHat,
-      title: "インフラ整備",
-      description: "上下水道、ガス、電気などのライフライン整備。人々の生活に欠かせない重要なインフラを守り、更新します。"
+      icon: Anchor,
+      title: "重量鳶工事",
+      description: "大型機械や重量物の搬入・据付・撤去。特殊な機材と高度な技術で、重量物を安全かつ正確に配置します。"
     },
     {
-      icon: Ruler,
-      title: "設計・施工管理",
-      description: "企画・設計から施工管理まで、トータルでサポート。徹底した品質管理と工程管理で、プロジェクトを成功に導きます。"
+      icon: Grid, // Using Grid for Scaffolding as well or maybe Network? Let's use Grid for simplicity as it represents structure
+      title: "足場工事",
+      description: "作業員の安全を守る作業床の設置。現場の状況に合わせた最適な工法で、効率的で安全な足場を組み上げます。"
+    },
+    {
+      icon: ClipboardCheck,
+      title: "現場管理",
+      description: "工程管理、安全管理、品質管理を一元化。円滑な現場運営をサポートし、工期遵守と無事故・無災害を目指します。"
     }
   ];
 
@@ -76,7 +81,7 @@ export const Services = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         {services.map((service, index) => (
           <ServiceCard
             key={index}
