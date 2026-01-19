@@ -13,6 +13,10 @@ export const Gallery = () => {
     { src: '/assets/site-8.jpg', alt: 'Project 4', span: 'col-span-1 md:col-span-2 row-span-1' },
     { src: '/assets/site-9.jpg', alt: 'Project 5', span: 'col-span-1 row-span-1' },
     { src: '/assets/site-10.jpg', alt: 'Project 6', span: 'col-span-1 row-span-1' },
+    { src: '/assets/site-13.jpg', alt: 'Project 7', span: 'col-span-1 row-span-1' },
+    { src: '/assets/site-14.jpg', alt: 'Project 8', span: 'col-span-1 row-span-1' },
+    { src: '/assets/site-15.jpg', alt: 'Project 9', span: 'col-span-1 row-span-1' },
+    { src: '/assets/site-16.jpg', alt: 'Project 10', span: 'col-span-1 row-span-1' },
   ];
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
