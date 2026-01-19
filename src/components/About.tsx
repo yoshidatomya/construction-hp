@@ -70,12 +70,13 @@ export const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-corporate-black mb-6 leading-tight">
             <BlurText text="確かな技術で、安心の未来を。" delay={0.2} />
           </h2>
-          <p className="text-gray-600 mb-8 leading-relaxed">
-            合同会社健組（けんぐみ）は、
-            <span className="inline-block">鉄骨工事、鍛冶工事、</span>
-            <span className="inline-block">重量鳶工事、足場工事など、</span><br className="hidden md:block" />
-            建設現場における重要な専門工事を一式で請け負います。<br className="block my-2" />
-            現場管理も含め、安全かつ高品質な施工をお約束いたします。
+          <p className="text-gray-600 mb-8 leading-relaxed text-left md:text-left">
+            合同会社健組（けんぐみ）は、<br className="md:hidden" />
+            鉄骨工事、鍛冶工事、重量鳶工事、足場工事など、<br />
+            建設現場における重要な専門工事を<br className="md:hidden" />
+            一式で請け負います。<br /><br />
+            現場管理も含め、<br className="md:hidden" />
+            安全かつ高品質な施工をお約束いたします。
           </p>
 
           <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">

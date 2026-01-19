@@ -55,20 +55,31 @@ export const Hero = () => {
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
             <SplitText
-              text={`未来のインフラを\n創造する`}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight whitespace-pre-wrap"
+              text="未来のインフラを"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-2 block"
               delay={0.3}
               duration={0.6}
-              stagger={0.04}
+            />
+            <SplitText
+              text="創造する"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight block"
+              delay={0.5}
+              duration={0.6}
             />
           </h1>
 
           <div className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed">
-            <BlurText
-              text="確かな技術と信頼で、社会の基盤を支えます。私たちは、次世代へ繋ぐ価値ある建設を提供します。"
-              delay={0.8}
-              duration={0.6}
-            />
+            <p className="hidden md:block">
+              <BlurText
+                text="確かな技術と信頼で、社会の基盤を支えます。私たちは、次世代へ繋ぐ価値ある建設を提供します。"
+                delay={0.8}
+                duration={0.6}
+              />
+            </p>
+            <p className="block md:hidden text-base leading-relaxed px-4">
+              確かな技術と信頼で、<br />社会の基盤を支えます。<br /><br />
+              私たちは、次世代へ繋ぐ<br />価値ある建設を提供します。
+            </p>
           </div>
 
           <motion.div
