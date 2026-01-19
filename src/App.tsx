@@ -20,7 +20,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={
-          <div className="min-h-screen bg-corporate-light font-sans text-corporate-black selection:bg-corporate-accent selection:text-white">
+          <div className="min-h-screen bg-corporate-light font-sans text-corporate-black selection:bg-corporate-accent selection:text-white overflow-x-hidden">
             <Navbar />
             <main>
               <Hero />

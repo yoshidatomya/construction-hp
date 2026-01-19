@@ -36,21 +36,21 @@ export const About = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-corporate-black/40 to-transparent" />
           </div>
           {/* Decorative Element */}
-          <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-corporate-light -z-10 rounded-2xl" />
-          <div className="absolute -top-6 -left-6 w-48 h-48 bg-corporate-accent/10 -z-10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-6 -right-4 md:-right-6 w-32 md:w-48 h-32 md:h-48 bg-corporate-light -z-10 rounded-2xl" />
+          <div className="absolute -top-6 -left-6 w-48 h-48 bg-corporate-accent/10 -z-10 rounded-full blur-3xl opacity-50 md:opacity-100" />
 
           {/* Experience Badge with CountUp */}
           <motion.div
-            className="absolute bottom-8 left-8 bg-white p-6 rounded-xl shadow-xl max-w-[220px] backdrop-blur-sm"
+            className="absolute bottom-4 md:bottom-8 left-4 md:left-8 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-[220px] backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <p className="text-5xl font-bold text-corporate-accent">
+            <p className="text-4xl md:text-5xl font-bold text-corporate-accent">
               <CountUp end={50} duration={2.5} suffix="+" />
             </p>
-            <p className="text-sm text-gray-600 font-medium mt-1">Years of Excellence</p>
+            <p className="text-xs md:text-sm text-gray-600 font-medium mt-1">Years of Excellence</p>
           </motion.div>
         </motion.div>
 
