@@ -62,7 +62,7 @@ export const Hero = () => {
             />
           </h1>
 
-          <div className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed">
+          <div className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 max-w-2xl mx-auto mb-10 md:mb-12 leading-loose md:leading-relaxed px-2">
             <BlurText
               text="確かな技術と信頼で、社会の基盤を支えます。私たちは、次世代へ繋ぐ価値ある建設を提供します。"
               delay={0.8}

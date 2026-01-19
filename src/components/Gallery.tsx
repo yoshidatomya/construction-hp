@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from './ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SpotlightCard } from './ui/SpotlightCard';
 import { BlurText } from './ui/BlurText';
 
@@ -19,7 +19,33 @@ export const Gallery = () => {
         { src: '/assets/site-16.jpg', alt: 'Project 10', span: 'col-span-1 row-span-1' },
     ];
 
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const selectedImage = selectedIndex !== null ? images[selectedIndex].src : null;
+
+    const handleNext = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        if (selectedIndex !== null) {
+            setSelectedIndex((selectedIndex + 1) % images.length);
+        }
+    };
+
+    const handlePrev = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        if (selectedIndex !== null) {
+            setSelectedIndex((selectedIndex - 1 + images.length) % images.length);
+        }
+    };
+
+    React.useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (selectedIndex === null) return;
+            if (e.key === 'ArrowRight') handleNext();
+            if (e.key === 'ArrowLeft') handlePrev();
+            if (e.key === 'Escape') setSelectedIndex(null);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedIndex]);
 
     return (
         <Section id="gallery" background="white">
@@ -35,7 +61,7 @@ export const Gallery = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-corporate-black mb-4">
                     <BlurText text="施工実績" delay={0.1} />
                 </h2>
-                <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                <p className="mt-4 text-gray-600 max-w-xl mx-auto text-sm md:text-base leading-relaxed px-4">
                     私たちが手掛けた代表的なプロジェクトをご紹介します。
                 </p>
             </div>
@@ -62,7 +88,7 @@ export const Gallery = () => {
                         <motion.div
                             key={index}
                             className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
-                            onClick={() => setSelectedImage(img.src)}
+                            onClick={() => setSelectedIndex(index % images.length)}
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
                         >
@@ -81,25 +107,41 @@ export const Gallery = () => {
 
             {/* Lightbox */}
             <AnimatePresence>
-                {selectedImage && (
+                {selectedIndex !== null && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"
-                        onClick={() => setSelectedImage(null)}
+                        onClick={() => setSelectedIndex(null)}
                     >
                         <button
-                            className="absolute top-6 right-6 text-white p-3 hover:bg-white/10 rounded-full transition-colors"
-                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-6 right-6 text-white p-3 hover:bg-white/10 rounded-full transition-colors z-50"
+                            onClick={() => setSelectedIndex(null)}
                         >
                             <X className="w-8 h-8" />
                         </button>
+
+                        <button
+                            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white p-4 hover:bg-white/10 rounded-full transition-colors z-50"
+                            onClick={handlePrev}
+                        >
+                            <ChevronLeft className="w-10 h-10" />
+                        </button>
+
+                        <button
+                            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white p-4 hover:bg-white/10 rounded-full transition-colors z-50"
+                            onClick={handleNext}
+                        >
+                            <ChevronRight className="w-10 h-10" />
+                        </button>
+
                         <motion.img
+                            key={selectedIndex}
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            src={selectedImage}
+                            src={images[selectedIndex].src}
                             alt="Full size"
                             className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
                             onClick={(e) => e.stopPropagation()}

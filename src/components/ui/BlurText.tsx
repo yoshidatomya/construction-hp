@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation, Variants } from 'framer-motion';
+import { cn } from '../../utils/cn';
 
 interface BlurTextProps {
     text: string;
@@ -26,7 +27,10 @@ export const BlurText: React.FC<BlurTextProps> = ({
         }
     }, [isInView, controls]);
 
-    const words = text.split(' ');
+    // For Japanese text which has no spaces, split by characters to allow natural wrapping.
+    // Otherwise split by spaces for Western languages.
+    const isJapanese = /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/.test(text);
+    const elements = (isJapanese && !text.includes(' ')) ? text.split('') : text.split(' ');
 
     const containerVariants: Variants = {
         hidden: {},
@@ -64,13 +68,16 @@ export const BlurText: React.FC<BlurTextProps> = ({
             animate={controls}
             aria-label={text}
         >
-            {words.map((word, index) => (
+            {elements.map((el, index) => (
                 <motion.span
                     key={index}
-                    className="inline-block mr-[0.25em]"
+                    className={cn(
+                        "inline-block",
+                        !isJapanese && "mr-[0.25em]"
+                    )}
                     variants={wordVariants}
                 >
-                    {word}
+                    {el === ' ' ? '\u00A0' : el}
                 </motion.span>
             ))}
         </motion.span>

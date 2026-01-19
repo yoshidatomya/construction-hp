@@ -33,6 +33,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            className="leading-relaxed"
           >
             {children}
           </motion.div>
