@@ -35,10 +35,10 @@ export const Footer = () => {
             <h4 className="font-bold mb-6 text-gray-200 text-lg">Links</h4>
             <ul className="space-y-3 text-sm text-gray-400">
               {[
-                { name: 'ホーム', href: '#hero' },
-                { name: '会社概要', href: '#about' },
-                { name: '事業内容', href: '#services' },
-                { name: '採用情報', href: '#recruit' },
+                { name: 'ホーム', href: '/#hero' },
+                { name: '会社概要', href: '/#about' },
+                { name: '事業内容', href: '/#services' },
+                { name: '採用情報', href: '/recruit' },
               ].map((link) => (
                 <li key={link.name}>
                   <a

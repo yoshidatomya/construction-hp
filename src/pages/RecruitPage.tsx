@@ -53,7 +53,7 @@ export const RecruitPage = () => {
                                 <div className="bg-orange-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
                                     <HardHat className="w-6 h-6 text-corporate-accent" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">現場スタッフ（鉄骨・鍛冶・鳶鳶）</h3>
+                                <h3 className="text-xl font-bold mb-4">現場スタッフ（鉄骨・鍛冶・鳶）</h3>
                                 <ul className="space-y-3 text-sm text-gray-600 mb-6">
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="w-4 h-4 text-corporate-accent shrink-0 mt-0.5" />

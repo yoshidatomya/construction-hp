@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Section } from './ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -21,6 +21,11 @@ export const Gallery = () => {
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
+    const [mobileIndex, setMobileIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const touchStartX = useRef<number>(0);
+    const touchEndX = useRef<number>(0);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -31,6 +36,51 @@ export const Gallery = () => {
 
     const selectedImage = selectedIndex !== null ? images[selectedIndex].src : null;
 
+    // Pause auto-scroll temporarily when user manually navigates (mobile only)
+    const pauseAutoScroll = useCallback(() => {
+        setIsPaused(true);
+        if (pauseTimeoutRef.current) {
+            clearTimeout(pauseTimeoutRef.current);
+        }
+        pauseTimeoutRef.current = setTimeout(() => {
+            setIsPaused(false);
+        }, 4000); // Resume after 4 seconds
+    }, []);
+
+    // Mobile navigation handlers
+    const handleMobileNext = useCallback(() => {
+        setMobileIndex((prev) => (prev + 1) % images.length);
+        pauseAutoScroll();
+    }, [images.length, pauseAutoScroll]);
+
+    const handleMobilePrev = useCallback(() => {
+        setMobileIndex((prev) => (prev - 1 + images.length) % images.length);
+        pauseAutoScroll();
+    }, [images.length, pauseAutoScroll]);
+
+    // Touch handlers for swipe
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const diff = touchStartX.current - touchEndX.current;
+        const minSwipeDistance = 50;
+
+        if (Math.abs(diff) > minSwipeDistance) {
+            if (diff > 0) {
+                handleMobileNext(); // Swipe left = next
+            } else {
+                handleMobilePrev(); // Swipe right = prev
+            }
+        }
+    };
+
+    // Lightbox handlers
     const handleNext = (e?: React.MouseEvent) => {
         e?.stopPropagation();
         if (selectedIndex !== null) {
@@ -56,6 +106,15 @@ export const Gallery = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [selectedIndex]);
 
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (pauseTimeoutRef.current) {
+                clearTimeout(pauseTimeoutRef.current);
+            }
+        };
+    }, []);
+
     return (
         <Section id="gallery" background="white">
             <div className="text-center mb-16">
@@ -75,44 +134,124 @@ export const Gallery = () => {
                 </p>
             </div>
 
-            {/* Infinite Scrolling Marquee */}
-            <div className="relative w-full overflow-hidden py-10">
-                <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                <motion.div
-                    className="flex gap-6"
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{
-                        x: {
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            duration: isMobile ? 24 : 30,
-                            ease: "linear"
-                        }
-                    }}
-                >
-                    {/* Duplicate images array to create seamless loop */}
-                    {[...images, ...images].map((img, index) => (
+            {/* Mobile Gallery with Swipe */}
+            {isMobile ? (
+                <div className="relative w-full">
+                    {/* Swipeable Image Container */}
+                    <div
+                        className="relative w-full overflow-hidden"
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         <motion.div
-                            key={index}
-                            className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
-                            onClick={() => setSelectedIndex(index % images.length)}
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
+                            className="flex"
+                            animate={{ x: `-${mobileIndex * 100}%` }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         >
-                            <img
-                                src={img.src}
-                                alt={img.alt}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span className="text-white font-bold border border-white px-4 py-1 rounded-full backdrop-blur-sm">VIEW</span>
-                            </div>
+                            {images.map((img, index) => (
+                                <div
+                                    key={index}
+                                    className="min-w-full px-4"
+                                    onClick={() => setSelectedIndex(index)}
+                                >
+                                    <div className="relative h-[280px] rounded-xl overflow-hidden">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 active:opacity-100 transition-opacity">
+                                            <span className="text-white font-bold border border-white px-4 py-1 rounded-full backdrop-blur-sm">VIEW</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </motion.div>
-                    ))}
-                </motion.div>
-            </div>
+                    </div>
+
+                    {/* Navigation Arrows Below Gallery (Mobile Only) */}
+                    <div className="flex items-center justify-center gap-6 mt-6">
+                        <button
+                            onClick={handleMobilePrev}
+                            className="w-12 h-12 rounded-full bg-corporate-black/10 hover:bg-corporate-accent/20 flex items-center justify-center transition-colors"
+                            aria-label="Previous image"
+                        >
+                            <ChevronLeft className="w-6 h-6 text-corporate-black" />
+                        </button>
+
+                        {/* Dot Indicators */}
+                        <div className="flex gap-2">
+                            {images.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => {
+                                        setMobileIndex(index);
+                                        pauseAutoScroll();
+                                    }}
+                                    className={`w-2 h-2 rounded-full transition-all ${index === mobileIndex
+                                            ? 'bg-corporate-accent w-4'
+                                            : 'bg-gray-300 hover:bg-gray-400'
+                                        }`}
+                                    aria-label={`Go to image ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={handleMobileNext}
+                            className="w-12 h-12 rounded-full bg-corporate-black/10 hover:bg-corporate-accent/20 flex items-center justify-center transition-colors"
+                            aria-label="Next image"
+                        >
+                            <ChevronRight className="w-6 h-6 text-corporate-black" />
+                        </button>
+                    </div>
+
+                    {/* Image Counter */}
+                    <div className="text-center mt-3 text-sm text-gray-500">
+                        {mobileIndex + 1} / {images.length}
+                    </div>
+                </div>
+            ) : (
+                /* Desktop: Infinite Scrolling Marquee (unchanged) */
+                <div className="relative w-full overflow-hidden py-10">
+                    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+                    <motion.div
+                        className="flex gap-6"
+                        animate={{ x: ["0%", "-50%"] }}
+                        transition={{
+                            x: {
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                duration: 30,
+                                ease: "linear"
+                            }
+                        }}
+                    >
+                        {/* Duplicate images array to create seamless loop */}
+                        {[...images, ...images].map((img, index) => (
+                            <motion.div
+                                key={index}
+                                className="relative min-w-[300px] h-[250px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 group"
+                                onClick={() => setSelectedIndex(index % images.length)}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <img
+                                    src={img.src}
+                                    alt={img.alt}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <span className="text-white font-bold border border-white px-4 py-1 rounded-full backdrop-blur-sm">VIEW</span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            )}
 
             {/* Lightbox */}
             <AnimatePresence>
