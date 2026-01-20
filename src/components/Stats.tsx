@@ -7,14 +7,14 @@ export const Stats = () => {
     const stats = [
         {
             icon: Briefcase,
-            value: 100,
+            value: 200,
             suffix: '+',
             label: '施工実績',
             sublabel: 'Projects Completed'
         },
         {
             icon: Users,
-            value: 30,
+            value: 100,
             suffix: '+',
             label: 'スタッフ数',
             sublabel: 'Team Members'
@@ -28,7 +28,7 @@ export const Stats = () => {
         },
         {
             icon: Shield,
-            value: 99,
+            value: 100,
             suffix: '%',
             label: '安全達成率',
             sublabel: 'Safety Record'

@@ -143,7 +143,7 @@ export const Gallery = () => {
                     Projects
                 </motion.h3>
                 <h2 className="text-3xl md:text-4xl font-bold text-corporate-black mb-4">
-                    <BlurText text="施工実績" delay={0.1} />
+                    <BlurText text="施工風景" delay={0.1} />
                 </h2>
                 <p className="mt-4 text-gray-600 max-w-xl mx-auto text-sm md:text-base leading-relaxed px-4">
                     私たちが手掛けた代表的なプロジェクトをご紹介します。
