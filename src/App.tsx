@@ -9,6 +9,7 @@ import { Gallery } from './components/Gallery';
 import { Process } from './components/Process';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { Stats } from './components/Stats';
 
 import { Routes, Route } from 'react-router-dom';
 import { RecruitPage } from './pages/RecruitPage';
@@ -24,6 +25,7 @@ function App() {
             <Navbar />
             <main>
               <Hero />
+              <Stats />
               <About />
               <Services />
               <Strengths />
