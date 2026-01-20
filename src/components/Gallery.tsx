@@ -24,6 +24,7 @@ export const Gallery = () => {
     const [mobileIndex, setMobileIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
     const touchStartX = useRef<number>(0);
     const touchEndX = useRef<number>(0);
 
@@ -46,6 +47,21 @@ export const Gallery = () => {
             setIsPaused(false);
         }, 4000); // Resume after 4 seconds
     }, []);
+
+    // Auto-play for mobile gallery
+    useEffect(() => {
+        if (isMobile && !isPaused && selectedIndex === null) {
+            autoPlayRef.current = setInterval(() => {
+                setMobileIndex((prev) => (prev + 1) % images.length);
+            }, 3000); // Auto-advance every 3 seconds
+        }
+
+        return () => {
+            if (autoPlayRef.current) {
+                clearInterval(autoPlayRef.current);
+            }
+        };
+    }, [isMobile, isPaused, selectedIndex, images.length]);
 
     // Mobile navigation handlers
     const handleMobileNext = useCallback(() => {
@@ -190,8 +206,8 @@ export const Gallery = () => {
                                         pauseAutoScroll();
                                     }}
                                     className={`w-2 h-2 rounded-full transition-all ${index === mobileIndex
-                                            ? 'bg-corporate-accent w-4'
-                                            : 'bg-gray-300 hover:bg-gray-400'
+                                        ? 'bg-corporate-accent w-4'
+                                        : 'bg-gray-300 hover:bg-gray-400'
                                         }`}
                                     aria-label={`Go to image ${index + 1}`}
                                 />
