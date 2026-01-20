@@ -29,7 +29,8 @@ export const Gallery = () => {
     const touchEndX = useRef<number>(0);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        // Extended to 1024px to include iPad in mobile/tablet view
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);

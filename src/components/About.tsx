@@ -91,6 +91,10 @@ export const About = () => {
                 <dt className="text-gray-500">所在地</dt>
                 <dd className="col-span-2 font-medium text-gray-900">〒274-0063<br />千葉県船橋市習志野台4-29-26</dd>
               </div>
+              <div className="grid grid-cols-3">
+                <dt className="text-gray-500">主な取引先銀行</dt>
+                <dd className="col-span-2 font-medium text-gray-900">千葉銀行習志野台支店</dd>
+              </div>
             </dl>
           </div>
 

@@ -16,8 +16,8 @@ export const Stats = () => {
             icon: Users,
             value: 100,
             suffix: '+',
-            label: 'スタッフ数',
-            sublabel: 'Team Members'
+            label: '協力業者数',
+            sublabel: 'Partner Companies'
         },
         {
             icon: MapPin,
