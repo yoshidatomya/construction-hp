@@ -1,6 +1,4 @@
-# AI React Website Template
 
-A flexible, feature-rich React template designed for AI-generated websites with modern development tools and libraries.
 
 ## ✨ Key Features
 
