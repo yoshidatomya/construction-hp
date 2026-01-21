@@ -37,7 +37,7 @@ export const Contact = () => {
               {
                 icon: Phone,
                 title: "お電話",
-                content: "047-468-1463",
+                content: "090-2220-2678",
                 subcontent: "お気軽にお問い合わせください"
               },
               {
