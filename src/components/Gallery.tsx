@@ -17,6 +17,10 @@ export const Gallery = () => {
         { src: '/assets/site-14.jpg', alt: 'Project 8', span: 'col-span-1 row-span-1' },
         { src: '/assets/site-15.jpg', alt: 'Project 9', span: 'col-span-1 row-span-1' },
         { src: '/assets/site-16.jpg', alt: 'Project 10', span: 'col-span-1 row-span-1' },
+        { src: '/assets/site-17.jpg', alt: 'Project 11', span: 'col-span-1 row-span-1' },
+        { src: '/assets/site-18.jpg', alt: 'Project 12', span: 'col-span-1 md:col-span-2 row-span-1' },
+        { src: '/assets/site-19.jpg', alt: 'Project 13', span: 'col-span-1 row-span-1' },
+        { src: '/assets/site-20.jpg', alt: 'Project 14', span: 'col-span-1 md:col-span-2 row-span-1' },
     ];
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
