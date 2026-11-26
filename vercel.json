@@ -53,10 +53,12 @@
             ]
         }
     ],
-    "rewrites": [
+    "cleanUrls": true,
+    "redirects": [
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
+            "source": "/recruit/",
+            "destination": "/recruit",
+            "permanent": true
         }
     ]
 }
